@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { IUser } from '../models/user.model';
-const User = require('../models/user.model');
+import User from '../models/user.model';
 // import bcrypt from 'bcrypt';
 
 const bcrypt = require('bcrypt');
@@ -30,7 +30,7 @@ userRouter.post("/register", (req, res: any, next) => {
         displayName: res.displayName,
         cellNumber: res.cellNumber,
     });
-
+    //UdBHf5xTBhaQtN3GRZGv
     user.save()
         .then((result: any) => {
 

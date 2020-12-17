@@ -1,7 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
-var User = require('../models/user.model');
+var user_model_1 = __importDefault(require("../models/user.model"));
 // import bcrypt from 'bcrypt';
 var bcrypt = require('bcrypt');
 var bodyParser = require('body-parser');
@@ -14,20 +17,21 @@ userRouter.get('/', function (req, res) {
     return res.json('This is the user route');
 });
 userRouter.post("/register", function (req, res, next) {
-    var user = new User({
-        email: req.email,
-        firstName: req.firstName,
-        lastName: req.lastName,
-        password: req.password,
-        displayName: req.displayName,
-        cellNumber: req.cellNumber,
+    var user = new user_model_1.default({
+        email: res.email,
+        firstName: res.firstName,
+        lastName: res.lastName,
+        password: res.password,
+        displayName: res.displayName,
+        cellNumber: res.cellNumber,
     });
+    //UdBHf5xTBhaQtN3GRZGv
     user.save()
         .then(function (result) {
-        // res.status(201).json({
-        //     message: 'Successfully created a new user!',
-        //     result: result
-        // });
+        res.status(201).json({
+            message: 'Successfully created a new user!',
+            result: result
+        });
         // res.sendCode(201);
         // console.log(res);
         // res.status(201).send("User has been successfully created");
@@ -37,7 +41,7 @@ userRouter.post("/register", function (req, res, next) {
         //     message: "User has been successfully created",
         //     statusCode: 201
         // })
-        res.status(200).json({ "status": true, "result": 'Edit successful!' });
+        // return res;
     })
         .catch(function (err) {
         res.status(500).json({

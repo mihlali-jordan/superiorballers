@@ -1,11 +1,12 @@
 import { Document, Model, model, Types, Schema, Query, Mongoose } from 'mongoose';
 //var uniqueValidator = require('mongoose-unique-validator')
 //import uniqueValidator from 'mongoose-unique-validator';
-const mongoose = require('mongoose');
+//const mongoose = require('mongoose');
+import * as mongoose from 'mongoose';
 
 //Schema
 
-const userSchema = new Schema({
+export const userSchema = new mongoose.Schema({
 
     firstName: {
         type: String,
@@ -37,7 +38,7 @@ const userSchema = new Schema({
 
 });
 
-export interface IUser extends Document {
+export interface IUser extends mongoose.Document {
     email: string;
     firstName: string;
     lastName: string;
@@ -48,4 +49,8 @@ export interface IUser extends Document {
 
 //userSchema.plugin(uniqueValidator);
 
-module.exports = mongoose.model("User", userSchema);
+// module.exports = mongoose.model("User", userSchema);
+// module.exports = model<IUser>("IUser", userSchema);
+
+const User = mongoose.model<IUser>('User', userSchema);
+export default User;
