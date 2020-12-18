@@ -28,6 +28,7 @@ router.post('/register', async (req, res) => {
 
     user = new User({
       firstName,
+      email,
       lastName,
       password,
       displayName,
