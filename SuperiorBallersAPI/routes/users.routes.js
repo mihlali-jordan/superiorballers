@@ -5,10 +5,10 @@ const jwt = require('jsonwebtoken')
 
 const User = require('../models/user.model.js')
 
-// @route    POST api/users
+// @route    POST api/users/register
 // @desc     Register user
 // @access   Public
-router.post('/', async (req, res) => {
+router.post('/register', async (req, res) => {
   // destructure values from request body
   const {
     email,
